@@ -1,18 +1,10 @@
 package kata.bowling;
 
-public class Frame {
-    private final int pinsDownInFirstRoll;
-    private final int pinsDownInSecondRoll;
-    public Frame(int pinsDownInFirstRoll, int pinsDownInSecondRoll) {
-        this.pinsDownInFirstRoll = pinsDownInFirstRoll;
-        this.pinsDownInSecondRoll = pinsDownInSecondRoll;
-    }
+public interface Frame {
+    int getScore();
 
-    public int getScore() {
-        return pinsDownInFirstRoll + pinsDownInSecondRoll;
-    }
+    int getPinsDownInFirstRoll();
 
-    public int getPinsDownInFirstRoll() {
-        return pinsDownInFirstRoll;
-    }
+    FrameType getTypeOfFrame();
+
 }
