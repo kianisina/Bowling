@@ -13,7 +13,12 @@ class GameTest {
     }
     @Test
     public void canScoreZero() {
-        game.frame(0);
+        game.frame(0,0);
         assertEquals(0, game.getScore());
+    }
+    @Test
+    public void canScoreOneAndTwo() {
+        game.frame(1,2);
+        assertEquals(3,game.getScore());
     }
 }
