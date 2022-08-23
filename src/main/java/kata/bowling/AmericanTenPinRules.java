@@ -21,14 +21,20 @@ public class AmericanTenPinRules {
             Frame frame = frames.get(currentFrame);
             frameType = frame.getTypeOfFrame();
             switch (frameType) {
-                case SPARE -> score += frame.getScore() + frames.get(currentFrame + 1).getPinsDownInFirstRoll();
-                /*the if Condition in strike case check if there is a Strikes after a Strike Frame*/
-                case STRIKE -> score += frames.get(currentFrame + 1).getTypeOfFrame() == FrameType.STRIKE ?
-                        frame.getScore() + frames.get(currentFrame + 1).getScore()
-                                + frames.get(currentFrame + 2).getPinsDownInFirstRoll() :
-                        frame.getScore() + frames.get(currentFrame + 1).getScore();
-                case NORMAL -> score += frame.getScore();
+                case SPARE:
+                    score += frame.getScore() + frames.get(currentFrame + 1).getPinsDownInFirstRoll();
+                    break;
+                case STRIKE:
+                    score += frames.get(currentFrame + 1).getTypeOfFrame() == FrameType.STRIKE ?
+                            frame.getScore() + frames.get(currentFrame + 1).getScore()
+                                    + frames.get(currentFrame + 2).getPinsDownInFirstRoll() :
+                            frame.getScore() + frames.get(currentFrame + 1).getScore();
+                    break;
+                case NORMAL:
+                    score += frame.getScore();
+                    break;
             }
+
         }
         return score;
     }
