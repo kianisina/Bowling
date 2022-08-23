@@ -1,12 +1,33 @@
 package kata.bowling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
-    private int score;
-    public void frame(int pinsDownInFirstRoll, int pinsDownInSecondRoll) {
-        score += pinsDownInFirstRoll + pinsDownInSecondRoll;
+    private List<Frame> frames;
+
+    public Game() {
+        frames = new ArrayList<>();
+    }
+
+    public void addFrame(int pinsDownInFirstRoll, int pinsDownInSecondRoll) {
+        frames.add(new Frame(pinsDownInFirstRoll, pinsDownInSecondRoll));
+
     }
 
     public int getScore() {
+        int score = 0;
+        for (int currentFrame = 0; currentFrame < frames.size(); currentFrame++) {
+            if (isSpare(currentFrame)) {
+                score += frames.get(currentFrame).getScore() + frames.get(currentFrame+1).getPinsDownInFirstRoll();
+            }else {
+                score += frames.get(currentFrame).getScore();
+            }
+        }
         return score;
+    }
+
+    private boolean isSpare(int currentFrame) {
+        return frames.get(currentFrame).getScore() == 10;
     }
 }
