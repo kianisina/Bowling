@@ -26,5 +26,10 @@ class GameTest {
         game.roll("XXXXXXXXXXXX");
         assertEquals(300, game.calScore());
     }
+    @Test
+    public void canScoreSpareFrames() {
+        game.roll("5/5/5/5/5/5/5/5/5/5/5");
+        assertEquals(150, game.calScore());
+    }
 
 }

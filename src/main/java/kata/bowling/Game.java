@@ -13,8 +13,12 @@ public class Game {
             if (rolls.charAt(i) == 'X') {
                 frameToAnalyze = rolls.charAt(i) + "";
             } else {
-                frameToAnalyze = rolls.substring(i, i + 2);
-                i++;
+                if (i >= 20) {
+                    frameToAnalyze = rolls.charAt(i) + "-";
+                } else {
+                    frameToAnalyze = rolls.substring(i, i + 2);
+                    i++;
+                }
             }
             analyzeFrame(frameToAnalyze);
         }
@@ -26,11 +30,10 @@ public class Game {
             addFrame(new StrikeFrame());
         } else if (frameToAnalyze.contains("/")) {
             addFrame(new SpareFrame(Integer.parseInt(frameToAnalyze.charAt(0) + "")));
-        }else {
+        } else {
             int firstRoll = Integer.parseInt(frameToAnalyze.charAt(0) + "");
             if (frameToAnalyze.contains("-")) {
                 addFrame(new NormalFrame(firstRoll, 0));
-
             } else {
                 int secondRoll = Integer.parseInt(frameToAnalyze.charAt(1) + "");
                 addFrame(new NormalFrame(firstRoll, secondRoll));
