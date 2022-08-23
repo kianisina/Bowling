@@ -1,18 +1,19 @@
 package kata.bowling;
 
 public class Game {
-    private AmericanTenPinsRules americanTenPinsRules;
+    private AmericanTenPinRules americanTenPinRules;
+
     public Game() {
-        americanTenPinsRules = new AmericanTenPinsRules();
+        americanTenPinRules = new AmericanTenPinRules();
     }
 
     public void addFrame(Frame frame) {
-        americanTenPinsRules.addFrame(frame);
+        americanTenPinRules.addFrame(frame);
 
     }
 
     public int getScore() {
-        return americanTenPinsRules.calScore();
+        return americanTenPinRules.calScore();
     }
 
 
