@@ -1,10 +1,12 @@
 package kata.bowling;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AmericanTenPinRules {
-    List<Frame> frames;
+    private List<Frame> frames;
+    private final int numberOfFramesInOneLine = 10;
 
     public AmericanTenPinRules() {
         frames = new ArrayList<>();
@@ -14,29 +16,16 @@ public class AmericanTenPinRules {
         frames.add(frame);
     }
 
-    public int calScore() {
+    public int calculateScore() {
         int score = 0;
-        FrameType frameType;
-        for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
+        Iterator<Frame> frameIterator = frames.listIterator();
+        int currentFrame = 0;
+        while (frameIterator.hasNext() && currentFrame < numberOfFramesInOneLine) {
             Frame frame = frames.get(currentFrame);
-            frameType = frame.getTypeOfFrame();
-            switch (frameType) {
-                case SPARE:
-                    score += frame.getScore() + frames.get(currentFrame + 1).getPinsDownInFirstRoll();
-                    break;
-                case STRIKE:
-                    score += frames.get(currentFrame + 1).getTypeOfFrame() == FrameType.STRIKE ?
-                            frame.getScore() + frames.get(currentFrame + 1).getScore()
-                                    + frames.get(currentFrame + 2).getPinsDownInFirstRoll() :
-                            frame.getScore() + frames.get(currentFrame + 1).getScore();
-                    break;
-                case NORMAL:
-                    score += frame.getScore();
-                    break;
-            }
-
+            frame.calculateScoreForSpareAndStrike(frames, currentFrame);
+            score += frame.getScore();
+            currentFrame++;
         }
         return score;
     }
-
 }

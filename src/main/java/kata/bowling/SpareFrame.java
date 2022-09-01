@@ -1,16 +1,20 @@
 package kata.bowling;
 
-public class SpareFrame implements Frame{
+import java.util.List;
+
+public class SpareFrame implements Frame {
     private final int pinsDownInFirstRoll;
     private final int scoreOfSpare = 10;
+    private int pinsDownInFirstRollOfNextFrame;
 
     public SpareFrame(int pinsDownInFirstRoll) {
         this.pinsDownInFirstRoll = pinsDownInFirstRoll;
 
     }
+
     @Override
     public int getScore() {
-        return scoreOfSpare;
+        return scoreOfSpare + pinsDownInFirstRollOfNextFrame;
     }
 
     @Override
@@ -19,8 +23,9 @@ public class SpareFrame implements Frame{
     }
 
     @Override
-    public FrameType getTypeOfFrame() {
-        return FrameType.SPARE;
+    public void calculateScoreForSpareAndStrike(List<Frame> frames, int currentFrame) {
+        pinsDownInFirstRollOfNextFrame = frames.get(currentFrame + 1).getPinsDownInFirstRoll();
+
     }
 
 

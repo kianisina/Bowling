@@ -1,5 +1,7 @@
 package kata.bowling;
 
+import java.util.List;
+
 public class NormalFrame implements Frame {
     private final int pinsDownInFirstRoll;
     private final int pinsDownInSecondRoll;
@@ -21,9 +23,8 @@ public class NormalFrame implements Frame {
     }
 
     @Override
-    public FrameType getTypeOfFrame() {
-        return FrameType.NORMAL;
+    public void calculateScoreForSpareAndStrike(List<Frame> frames, int currentFrame) {
+        //the most useless method ever
     }
-
 
 }
